@@ -1,0 +1,101 @@
+//program to check the day of a given date entered by the user
+#include <iostream>
+using namespace std;
+int leapyear(int y)
+{
+	if((y%100==0)&&(y%400==0))           //according to julian calender 1900,1700 etc are not leap year.
+	{return 1;	}
+	else if((y%100!=0)&&(y%4==0))
+	{return 1;	}
+	else
+	{return 0;	}
+}
+
+int days_in_month(int m,int y)
+{                                        //no of days in a month
+	int noofday=0;
+	switch(m)
+	{
+		case 1: noofday=31;
+				break;
+		case 2: noofday=28+leapyear(y);   //feb of any leap year will contain 29 days
+				break;
+		case 3: noofday=31;
+				break;
+		case 4: noofday=30;
+				break;
+		case 5: noofday=31;
+				break;
+		case 6: noofday=30;
+				break;
+		case 7: noofday=31;
+				break;
+		case 8: noofday=31;
+				break;
+		case 9: noofday=30;
+				break;
+		case 10: noofday=31;
+				break;
+		case 11: noofday=30;
+				break;
+		case 12: noofday=31;
+				break;		
+	}
+	return noofday;
+}
+
+string printday(int num)
+{
+	string ans;
+	switch(num)
+	{
+		
+		case 0: ans="Monday";
+				break;
+		case 1: ans="Tuesday";
+				break;
+		case 2: ans="Wednesday";
+				break;
+		case 3: ans="Thursday";
+				break;
+		case 4: ans="Friday";
+				break;
+		case 5: ans="Saturday";
+				break;
+		case 6:	ans="Sunday";
+				break;
+	}
+	return ans;
+}
+
+string finding_date(int dd,int mm,int yy)
+{
+ yy%=400;                           //the pattern repeats after every 400 year
+ int countdays=0;
+ countdays=(yy/100)*5;             //after every 100 years , 5 days are increased
+ yy%=100;
+ countdays=(yy-1)+((yy-1)/4);     //each year one day is increased but in a leap year 2 days are increased. 
+ for(int i=1;i<mm;i++)
+ {
+ 	countdays+=days_in_month(i,yy);  //adding days in that particular year.
+ }
+ countdays+=dd;  //given day
+ countdays%=7;
+ string result=printday(countdays);
+ return result;
+}
+
+int main()
+{
+int dd,mm,yy;
+cout<<"Enter the day: ";
+cin>>dd;	
+cout<<"Enter the month: ";
+cin>>mm;
+cout<<"Enter the year: ";
+cin>>yy;
+cout<<"Entered Date: "<<dd<<"/"<<mm<<"/"<<yy;
+string ans=finding_date(dd,mm,yy);
+cout<<"\nThe day on the given date "<<dd<<"/"<<mm<<"/"<<yy<<" is "<<ans;
+return 0;
+}
