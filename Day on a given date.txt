@@ -50,19 +50,19 @@ string printday(int num)
 	switch(num)
 	{
 		
-		case 0: ans="Monday";
+		case 1: ans="Monday";
 				break;
-		case 1: ans="Tuesday";
+		case 2: ans="Tuesday";
 				break;
-		case 2: ans="Wednesday";
+		case 3: ans="Wednesday";
 				break;
-		case 3: ans="Thursday";
+		case 4: ans="Thursday";
 				break;
-		case 4: ans="Friday";
+		case 5: ans="Friday";
 				break;
-		case 5: ans="Saturday";
+		case 6: ans="Saturday";
 				break;
-		case 6:	ans="Sunday";
+		case 0:	ans="Sunday";
 				break;
 	}
 	return ans;
